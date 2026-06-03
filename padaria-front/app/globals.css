@@ -1,26 +1,95 @@
+/* =============================================================================
+   Adélia Boulangerie — Design System
+   =============================================================================
+   Tailwind CSS v4 — using @theme inline for custom design tokens.
+   Brand palette, typography, and animations for a premium French bakery.
+   ========================================================================== */
+
 @import "tailwindcss";
 
+/* ---------------------------------------------------------------------------
+   CSS Custom Properties (non-Tailwind, used in body/scrollbar styles)
+   --------------------------------------------------------------------------- */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FDF8F0;
+  --foreground: #1A1A1A;
 }
 
+/* ---------------------------------------------------------------------------
+   Tailwind v4 Theme Tokens
+   --------------------------------------------------------------------------- */
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* ── Brand Colors ──────────────────────────────────────────────────────── */
+  --color-adelia-blue: #1B3A5C;
+  --color-adelia-gold: #C4973B;
+  --color-adelia-gold-light: #D4A94D;
+  --color-adelia-gold-dark: #A67D2E;
+  --color-adelia-cream: #F5EDD6;
+  --color-adelia-offwhite: #FDF8F0;
+  --color-adelia-text: #1A1A1A;
+  --color-adelia-muted: #6B6B6B;
+  --color-adelia-success: #2D7A4F;
+  --color-adelia-white: #FFFFFF;
+
+  /* ── Typography ────────────────────────────────────────────────────────── */
+  --font-heading: var(--font-playfair);
+  --font-body: var(--font-outfit);
+
+  /* ── Animations ────────────────────────────────────────────────────────── */
+  --animate-fade-in: fade-in 0.5s ease-out;
+  --animate-slide-in-right: slide-in-right 0.3s ease-out;
+  --animate-slide-in-up: slide-in-up 0.4s ease-out;
+  --animate-bounce-subtle: bounce-subtle 0.4s ease-out;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ---------------------------------------------------------------------------
+   Keyframe Animations
+   --------------------------------------------------------------------------- */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+
+@keyframes slide-in-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes bounce-subtle {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.15); }
+}
+
+/* ---------------------------------------------------------------------------
+   Base Styles
+   --------------------------------------------------------------------------- */
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body), system-ui, sans-serif;
+}
+
+/* ---------------------------------------------------------------------------
+   Custom Scrollbar (Webkit)
+   --------------------------------------------------------------------------- */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-adelia-offwhite);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-adelia-gold);
+  border-radius: 4px;
 }
